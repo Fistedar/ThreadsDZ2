@@ -30,7 +30,7 @@ public class Main {
         }
     }
 
-    public synchronized static String generateRoute(String letters, int length) {
+    public static String generateRoute(String letters, int length) {
         Random random = new Random();
         StringBuilder route = new StringBuilder();
         for (int i = 0; i < length; i++) {
