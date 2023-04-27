@@ -15,7 +15,7 @@ public class Main {
 
     }
 
-    public synchronized static void findAndPutR() {
+    public static void findAndPutR() {
         String str = generateRoute("RLRFR", 100);
         int count = 0;
         for (int j = 0; j < str.length(); j++) {
@@ -23,10 +23,12 @@ public class Main {
                 count++;
             }
         }
-        if (!sizeToFreq.containsKey(count)) {
-            sizeToFreq.put(count, 1);
-        } else {
-            sizeToFreq.computeIfPresent(count, (k, v) -> v + 1);
+        synchronized (sizeToFreq) {
+            if (!sizeToFreq.containsKey(count)) {
+                sizeToFreq.put(count, 1);
+            } else {
+                sizeToFreq.computeIfPresent(count, (k, v) -> v + 1);
+            }
         }
     }
 
